@@ -1,0 +1,23 @@
+{
+  "name": "threejs-parcel-template",
+  "version": "0.0.1",
+  "description": "Parcel template for three.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel --port 8080 --open src/index.html",
+    "build": "parcel build --no-source-maps src/index.html"
+  },
+  "keywords": [
+    "three.js",
+    "parcel"
+  ],
+  "author": "girishkumarv21@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "dat.gui": "^0.7.7",
+    "three": "^0.130.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
