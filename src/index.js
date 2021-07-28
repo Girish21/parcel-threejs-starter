@@ -2,13 +2,16 @@ import {
   Mesh,
   Scene,
   BoxBufferGeometry,
-  MeshBasicMaterial,
   PerspectiveCamera,
   WebGLRenderer,
   Clock,
+  ShaderMaterial,
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as dat from 'dat.gui'
+
+import VertexShader from '../shader/test/vertex.vert'
+import FragmentShader from '../shader/test/fragment.frag'
 
 const canvas = document.querySelector('canvas#webGL')
 
@@ -18,7 +21,10 @@ const scene = new Scene()
 
 const geometry = new BoxBufferGeometry(1, 1, 1)
 
-const material = new MeshBasicMaterial()
+const material = new ShaderMaterial({
+  vertexShader: VertexShader,
+  fragmentShader: FragmentShader,
+})
 
 const mesh = new Mesh(geometry, material)
 scene.add(mesh)
