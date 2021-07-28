@@ -1,12 +1,4 @@
-import {
-  Mesh,
-  Scene,
-  BoxBufferGeometry,
-  PerspectiveCamera,
-  WebGLRenderer,
-  Clock,
-  ShaderMaterial,
-} from 'three'
+import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import * as dat from 'dat.gui'
 
@@ -17,16 +9,16 @@ const canvas = document.querySelector('canvas#webGL')
 
 const gui = new dat.GUI()
 
-const scene = new Scene()
+const scene = new THREE.Scene()
 
-const geometry = new BoxBufferGeometry(1, 1, 1)
+const geometry = new THREE.BoxBufferGeometry(1, 1, 1)
 
-const material = new ShaderMaterial({
+const material = new THREE.ShaderMaterial({
   vertexShader: VertexShader,
   fragmentShader: FragmentShader,
 })
 
-const mesh = new Mesh(geometry, material)
+const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
 const size = {
@@ -34,19 +26,24 @@ const size = {
   height: window.innerHeight,
 }
 
-const camera = new PerspectiveCamera(75, size.width / size.height, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(
+  75,
+  size.width / size.height,
+  0.1,
+  100
+)
 camera.position.set(1, 1, 1)
 scene.add(camera)
 
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
 
-const renderer = new WebGLRenderer({ canvas })
+const renderer = new THREE.WebGLRenderer({ canvas })
 renderer.setSize(size.width, size.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.render(scene, camera)
 
-const clock = new Clock()
+const clock = new THREE.Clock()
 
 window.addEventListener('resize', () => {
   size.width = window.innerWidth
